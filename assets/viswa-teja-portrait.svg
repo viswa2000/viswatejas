@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110" role="img" aria-labelledby="title desc">
+  <title id="title">Viswa Teja Sudepalli profile placeholder</title>
+  <desc id="desc">A schematic profile illustration with the initials VTS.</desc>
+  <rect width="110" height="110" fill="#0C1928"/>
+  <circle cx="55" cy="39" r="19" fill="#4FD1C5" opacity=".9"/>
+  <path d="M22 101c2-23 15-35 33-35s31 12 33 35" fill="#4FD1C5" opacity=".75"/>
+  <path d="M18 18h16M18 18v16M92 18H76M92 18v16M18 92h16M18 92V76M92 92H76M92 92V76" fill="none" stroke="#4FD1C5" stroke-width="2"/>
+  <text x="55" y="106" text-anchor="middle" fill="#0A1420" font-family="monospace" font-size="9" font-weight="600">VTS</text>
+</svg>
