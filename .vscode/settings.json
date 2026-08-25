@@ -1,0 +1,8 @@
+{
+  "liveServer.settings.root": "/",
+  "liveServer.settings.CustomBrowser": "default",
+  "files.associations": {
+    "CLAUDE.md": "markdown",
+    "SKILL.md": "markdown"
+  }
+}

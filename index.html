@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Viswa Teja Sudepalli — Lead .NET Full Stack Engineer</title>
+<title>Viswateja Sudepalli — Lead .NET Full Stack Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -23,9 +23,25 @@
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'IBM Plex Sans', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
+    --content-max:1080px;
+    --space-1:4px;
+    --space-2:8px;
+    --space-3:12px;
+    --space-4:16px;
+    --space-5:24px;
+    --space-6:32px;
+    --space-7:48px;
+    --space-8:64px;
+    --space-9:96px;
+    --radius-sm:3px;
+    --focus-ring:0 0 0 3px var(--void), 0 0 0 5px var(--cyan);
   }
 
-  *{margin:0;padding:0;box-sizing:border-box;}
+  *, *::before, *::after{margin:0;padding:0;box-sizing:border-box;}
+
+  body, button, input, textarea, select{font:inherit;}
+  img, svg{display:block;max-width:100%;}
+  button, a{-webkit-tap-highlight-color:transparent;}
 
   html{scroll-behavior:smooth;}
 
@@ -44,12 +60,21 @@
 
   ::selection{background:var(--cyan); color:var(--void);}
 
-  :focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+  :focus-visible{outline:2px solid var(--cyan); outline-offset:3px; box-shadow:var(--focus-ring);}
+
+  .skip-link{
+    position:fixed; left:var(--space-4); top:var(--space-4); z-index:100;
+    padding:var(--space-2) var(--space-3);
+    background:var(--cyan); color:var(--void);
+    font-family:var(--font-mono); font-size:12px; font-weight:600;
+    text-decoration:none; transform:translateY(-150%); transition:transform .2s ease;
+  }
+  .skip-link:focus{transform:translateY(0);}
 
   .wrap{
-    max-width:1080px;
+    width:100%; max-width:var(--content-max);
     margin:0 auto;
-    padding:0 32px;
+    padding:0 var(--space-6);
   }
 
   /* ---------- schematic corner bracket ---------- */
@@ -117,7 +142,7 @@
     border-bottom:1px solid var(--hairline);
   }
   .topbar-inner{
-    max-width:1080px; margin:0 auto; padding:16px 32px;
+    width:100%; max-width:var(--content-max); margin:0 auto; padding:16px var(--space-6);
     display:flex; justify-content:space-between; align-items:center;
   }
   .brand{
@@ -137,6 +162,13 @@
     animation:blip 2s ease-in-out infinite;
   }
   @keyframes blip{ 0%,100%{opacity:1;} 50%{opacity:.3;} }
+
+  .topnav{display:none;}
+  .topnav a{
+    color:var(--text-mid); font-family:var(--font-mono); font-size:11px;
+    letter-spacing:.08em; text-decoration:none;
+  }
+  .topnav a:hover{color:var(--cyan);}
 
   /* ---------- section scaffolding ---------- */
   section{ padding:96px 0; position:relative; }
@@ -168,6 +200,11 @@
     min-height:100vh;
     display:flex; align-items:center;
     padding-top:140px; padding-bottom:80px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:""; position:absolute; top:50%; left:0; width:72px; height:1px;
+    background:var(--cyan); box-shadow:0 0 14px var(--cyan-glow);
   }
   .hero-grid{
     display:grid;
@@ -191,12 +228,16 @@
   .hero h1{
     font-family:var(--font-display);
     font-weight:700;
-    font-size:clamp(42px,6.4vw,68px);
+    font-size:clamp(34px,5.2vw,56px);
     line-height:1.02;
-    letter-spacing:-0.02em;
+    letter-spacing:-0.035em;
     margin-bottom:22px;
   }
   .hero h1 span{ color:var(--cyan); }
+  .hero h1::after{
+    content:""; display:block; width:48px; height:3px; margin-top:24px;
+    background:var(--cyan);
+  }
   .hero .role-line{
     font-family:var(--font-mono);
     font-size:15px;
@@ -228,7 +269,7 @@
     text-decoration:none;
     display:inline-flex; align-items:center; gap:8px;
     transition:all .2s ease;
-    border:1px solid transparent;
+    border:1px solid transparent; cursor:pointer;
   }
   .btn-primary{
     background:var(--cyan);
@@ -259,6 +300,24 @@
     max-width:480px;
     margin:0 auto;
   }
+  .diagram-panel{padding:clamp(16px,3vw,34px);background:rgba(16,31,50,.62);}
+  .diagram-panel::after{opacity:.55;}
+  .diagram-caption{
+    position:absolute; left:clamp(16px,3vw,34px); bottom:clamp(8px,2vw,24px);
+    color:var(--text-low); font-family:var(--font-mono); font-size:10px; letter-spacing:.1em;
+  }
+  .hero-profile{
+    display:grid; grid-template-columns:110px 1fr; gap:18px; align-items:center;
+    margin-bottom:24px; padding:14px; background:var(--panel-alt);
+    border:1px solid var(--hairline);
+  }
+  .hero-profile img{
+    width:110px; height:110px; aspect-ratio:1; object-fit:cover; object-position:center top;
+    border:1px solid var(--cyan-dim); filter:saturate(.85) contrast(1.05);
+    background:var(--panel-alt);
+  }
+  .hero-profile-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;color:var(--cyan);margin-bottom:7px;}
+  .hero-profile-copy{font-size:13px;color:var(--text-mid);}
   .diagram-wrap svg{ width:100%; height:100%; overflow:visible; }
   .node-core circle{ fill:var(--panel); stroke:var(--cyan); stroke-width:1.5; }
   .node-core text{ font-family:var(--font-mono); fill:var(--text-hi); font-size:10px; }
@@ -308,6 +367,10 @@
     overflow:hidden; margin-top:14px; max-width:340px;
   }
   .t-bar-fill{ height:100%; background:linear-gradient(90deg,var(--cyan-dim),var(--cyan)); border-radius:3px; }
+  .t-bar-fill--95{width:95%;}
+  .t-bar-fill--12{width:12%;}
+  .t-bar-fill--88{width:88%;}
+  .t-bar-fill--70{width:70%;}
   .t-item.current .t-role::after{
     content:"ACTIVE";
     font-family:var(--font-mono); font-size:9px; letter-spacing:.08em;
@@ -343,6 +406,35 @@
     border:1px solid var(--hairline);
     padding:5px 10px;
     border-radius:3px;
+  }
+
+  /* ---------- CAPABILITIES ---------- */
+  .capability-grid{
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px;
+    background:var(--hairline); border:1px solid var(--hairline);
+  }
+  .capability-card{background:var(--panel);padding:28px 26px;}
+  .capability-card,.principle,.stack-card,.proj-card,.split-panel{transition:border-color .2s ease,background .2s ease,transform .2s ease;}
+  .capability-card:hover,.principle:hover,.stack-card:hover,.proj-card:hover,.split-panel:hover{background:var(--panel-alt);}
+  .capability-card h3{
+    font-family:var(--font-display);font-size:20px;font-weight:600;
+    margin-bottom:10px;
+  }
+  .capability-card p{color:var(--text-mid);font-size:14px;margin-bottom:18px;max-width:440px;}
+  .capability-index{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--cyan);margin-bottom:18px;}
+  .system-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+  .system-grid .bracket{padding:28px 24px;}
+  .system-grid .bracket:hover{border-color:var(--cyan);}
+  .system-grid h3{font-family:var(--font-display);font-size:20px;font-weight:600;margin-bottom:10px;}
+  .system-grid p{color:var(--text-mid);font-size:14px;margin-bottom:18px;}
+  .principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);}
+  .principle{background:var(--panel);padding:26px 24px;}
+  .principle strong{display:block;font-family:var(--font-display);font-size:17px;margin-bottom:8px;}
+  .principle p{color:var(--text-mid);font-size:13.5px;}
+  .stack-label--spaced{margin-bottom:18px;}
+  .sec-sub--flush{margin-bottom:0;}
+  @media (max-width:800px){
+    .capability-grid,.system-grid,.principles{grid-template-columns:1fr;}
   }
 
   /* ---------- PROJECTS ---------- */
@@ -432,6 +524,32 @@
     padding-top:28px; border-top:1px solid var(--hairline);
   }
 
+  @media (max-width:900px){
+    .topnav{display:flex;align-items:center;gap:var(--space-4);}
+    .brand-status{display:none;}
+  }
+  @media (max-width:600px){
+    .wrap{padding:0 var(--space-4);}
+    .topbar-inner{padding:14px var(--space-4);}
+    .topnav{gap:var(--space-3);overflow:auto;max-width:68vw;scrollbar-width:none;}
+    .topnav::-webkit-scrollbar{display:none;}
+    section{padding:var(--space-9) 0;}
+    .hero{min-height:auto;padding-top:88px;padding-bottom:var(--space-8);}
+    .hero h1{font-size:clamp(32px,10vw,48px);}
+    .hero-cta .btn{width:100%;justify-content:center;}
+    .hero-meta{gap:var(--space-5);}
+    .hero-meta b{font-size:18px;}
+    .diagram-wrap{max-width:360px;margin-top:var(--space-4);}
+    .hero-profile{grid-template-columns:88px 1fr;gap:14px;}
+    .hero-profile img{width:88px;}
+    .contact-links a{overflow-wrap:anywhere;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *, *::before, *::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+  }
+
   ::-webkit-scrollbar{ width:10px; }
   ::-webkit-scrollbar-track{ background:var(--void); }
   ::-webkit-scrollbar-thumb{ background:var(--panel-alt); border:2px solid var(--void); border-radius:6px; }
@@ -439,10 +557,15 @@
 </head>
 <body>
 
-<nav class="rail" id="rail">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav class="rail" id="rail" aria-label="Page sections">
   <a href="#hero" class="active"><span class="dot"></span><span class="label">INTRO</span></a>
   <a href="#experience"><span class="dot"></span><span class="label">EXPERIENCE</span></a>
   <a href="#stack"><span class="dot"></span><span class="label">TECH STACK</span></a>
+  <a href="#capabilities"><span class="dot"></span><span class="label">CAPABILITIES</span></a>
+  <a href="#systems"><span class="dot"></span><span class="label">SYSTEMS</span></a>
+  <a href="#principles"><span class="dot"></span><span class="label">PRINCIPLES</span></a>
   <a href="#projects"><span class="dot"></span><span class="label">PROJECTS</span></a>
   <a href="#credentials"><span class="dot"></span><span class="label">CREDENTIALS</span></a>
   <a href="#contact"><span class="dot"></span><span class="label">CONTACT</span></a>
@@ -452,22 +575,35 @@
   <div class="topbar-inner">
     <div class="brand"><span class="px">/</span>viswatejas.dev</div>
     <div class="brand-status"><span class="blip"></span>OPEN TO OPPORTUNITIES</div>
+    <nav class="topnav" aria-label="Page sections">
+      <a href="#experience">Experience</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
 </header>
 
-<main>
+<main id="main-content">
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="wrap hero-grid">
       <div>
         <div class="hero-kicker"><span class="blip"></span>HYDERABAD, TELANGANA, INDIA</div>
-        <h1>Viswa Teja<br><span>Sudepalli.</span></h1>
+        <div class="hero-profile">
+          <img src="./assets/viswaphoto.jpeg?v=3" alt="Portrait of Viswa Teja S" width="110" height="110" decoding="async" loading="eager">
+          <div>
+            <div class="hero-profile-label">PROFILE / VISWATEJAS</div>
+            <p class="hero-profile-copy">Lead .NET Full Stack Engineer focused on cloud-native enterprise systems.</p>
+          </div>
+        </div>
+        <h1>Viswateja <span>Sudepalli.</span></h1>
         <div class="role-line">
           <span class="chip">.NET Core</span><span class="chip">Azure</span><span class="chip">React</span><span class="chip">Angular</span><span class="chip">Microservices</span>
         </div>
         <p class="desc">Lead .NET Full Stack Engineer with 9+ years designing and shipping enterprise-scale, cloud-native applications — from legacy .NET Framework migrations to event-driven microservices on Azure.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="ViswaTejaS_Resume.pdf" download>↓ Download Résumé</a>
+          <a class="btn btn-primary" href="assets/ViswaTejaS_Resume.pdf" download>↓ Download Résumé</a>
           <a class="btn btn-ghost" href="#contact">Get in touch</a>
         </div>
         <div class="hero-meta">
@@ -478,7 +614,7 @@
         </div>
       </div>
 
-      <div class="diagram-wrap" aria-hidden="true">
+      <div class="diagram-wrap bracket diagram-panel" aria-hidden="true">
         <svg viewBox="0 0 420 420">
           <!-- connectors -->
           <g id="connectors"></g>
@@ -490,6 +626,8 @@
           </g>
           <g id="nodes"></g>
         </svg>
+        <div class="diagram-caption">LIVE SYSTEM MAP · 07 NODES</div>
+        <span class="bl"></span><span class="br"></span>
       </div>
     </div>
   </section>
@@ -508,7 +646,7 @@
             <div class="t-period">FEB 2024 — PRESENT · 2.3 YRS</div>
           </div>
           <div class="t-org">at <b>Deloitte USI Consulting Pvt Ltd</b></div>
-          <div class="t-bar"><div class="t-bar-fill" style="width:95%"></div></div>
+          <div class="t-bar"><div class="t-bar-fill t-bar-fill--95"></div></div>
         </div>
 
         <div class="t-item">
@@ -517,7 +655,7 @@
             <div class="t-period">OCT 2023 — JAN 2024 · 3 MOS</div>
           </div>
           <div class="t-org">at <b>Cognizant Technology Solutions</b></div>
-          <div class="t-bar"><div class="t-bar-fill" style="width:12%"></div></div>
+          <div class="t-bar"><div class="t-bar-fill t-bar-fill--12"></div></div>
         </div>
 
         <div class="t-item">
@@ -526,7 +664,7 @@
             <div class="t-period">JUL 2019 — OCT 2023 · 4.2 YRS</div>
           </div>
           <div class="t-org">at <b>Covalence Global Technologies Pvt Ltd</b>, Hyderabad</div>
-          <div class="t-bar"><div class="t-bar-fill" style="width:88%"></div></div>
+          <div class="t-bar"><div class="t-bar-fill t-bar-fill--88"></div></div>
         </div>
 
         <div class="t-item">
@@ -535,7 +673,7 @@
             <div class="t-period">SEP 2016 — JUL 2019 · 2 YRS 10 MOS</div>
           </div>
           <div class="t-org">at <b>Astoria Technologies Pvt Ltd</b>, Hyderabad</div>
-          <div class="t-bar"><div class="t-bar-fill" style="width:70%"></div></div>
+          <div class="t-bar"><div class="t-bar-fill t-bar-fill--70"></div></div>
         </div>
       </div>
     </div>
@@ -589,6 +727,89 @@
           <div class="stack-label">10 · IDE</div>
           <div class="tag-row"><span class="tag">Visual Studio</span><span class="tag">VS Code</span></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <div class="wrap">
+      <div class="eyebrow">FULL-STACK CAPABILITIES</div>
+      <h2 class="sec-title">From interface to infrastructure.</h2>
+      <p class="sec-sub">A practical full-stack range for building dependable products, with the ownership to move between product detail and platform decisions.</p>
+
+      <div class="capability-grid">
+        <article class="capability-card">
+          <div class="capability-index">01 · EXPERIENCE LAYER</div>
+          <h3>Accessible product interfaces</h3>
+          <p>Reusable, responsive experiences that stay clear under real operational complexity and meet accessibility requirements.</p>
+          <div class="tag-row"><span class="tag">React</span><span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">WCAG 2.1/2.2</span></div>
+        </article>
+        <article class="capability-card">
+          <div class="capability-index">02 · APPLICATION LAYER</div>
+          <h3>Business logic that holds up</h3>
+          <p>Well-shaped APIs, domain workflows, and integration boundaries designed for security, testability, and change.</p>
+          <div class="tag-row"><span class="tag">ASP.NET Core</span><span class="tag">C#</span><span class="tag">REST APIs</span><span class="tag">OAuth 2.0</span></div>
+        </article>
+        <article class="capability-card">
+          <div class="capability-index">03 · DATA LAYER</div>
+          <h3>Data with a clear purpose</h3>
+          <p>Relational and document data solutions that balance consistency, query performance, observability, and useful reporting.</p>
+          <div class="tag-row"><span class="tag">SQL Server</span><span class="tag">MongoDB</span><span class="tag">Entity Framework</span><span class="tag">Power BI</span></div>
+        </article>
+        <article class="capability-card">
+          <div class="capability-index">04 · DELIVERY LAYER</div>
+          <h3>Reliable delivery systems</h3>
+          <p>Automated paths from code to production with monitoring in place, so teams can ship deliberately and recover quickly.</p>
+          <div class="tag-row"><span class="tag">Azure DevOps</span><span class="tag">GitHub Actions</span><span class="tag">Docker</span><span class="tag">App Insights</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOUD / ARCHITECTURE / AI -->
+  <section id="systems">
+    <div class="wrap">
+      <div class="eyebrow">SYSTEM DESIGN</div>
+      <h2 class="sec-title">Cloud-native by construction.</h2>
+      <p class="sec-sub">The platform decisions behind the interface: observable Azure services, resilient boundaries, and a measured approach to emerging AI workflows.</p>
+
+      <div class="system-grid">
+        <article class="bracket">
+          <div class="capability-index">05 · AZURE PLATFORM</div>
+          <h3>Cloud/Azure</h3>
+          <p>Compose managed services around the workload, keeping operations visible and deployment paths repeatable.</p>
+          <div class="tag-row"><span class="tag">App Services</span><span class="tag">Functions</span><span class="tag">Service Bus</span><span class="tag">Blob Storage</span><span class="tag">Azure Monitor</span></div>
+          <span class="bl"></span><span class="br"></span>
+        </article>
+        <article class="bracket">
+          <div class="capability-index">06 · DISTRIBUTED SYSTEMS</div>
+          <h3>Architecture</h3>
+          <p>Use clear service boundaries and asynchronous communication where they reduce coupling and improve resilience.</p>
+          <div class="tag-row"><span class="tag">Microservices</span><span class="tag">Event-Driven</span><span class="tag">REST Design</span><span class="tag">RBAC</span></div>
+          <span class="bl"></span><span class="br"></span>
+        </article>
+        <article class="bracket">
+          <div class="capability-index">07 · INTELLIGENT SYSTEMS</div>
+          <h3>AI / GenAI</h3>
+          <p>Explore AI where it improves discovery, decision support, and developer leverage without obscuring ownership or trust.</p>
+          <div class="tag-row"><span class="tag">Azure AI</span><span class="tag">RAG Patterns</span><span class="tag">Prompt Design</span><span class="tag">Human Review</span></div>
+          <span class="bl"></span><span class="br"></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section id="principles">
+    <div class="wrap">
+      <div class="eyebrow">ENGINEERING PRINCIPLES</div>
+      <h2 class="sec-title">Make the system easier to trust.</h2>
+      <p class="sec-sub">Good engineering is visible in the decisions that reduce friction for users, teammates, and the people operating the system later.</p>
+      <div class="principles">
+        <article class="principle"><strong>Design for the person using it.</strong><p>Accessibility, clarity, and performance are part of the product, not post-launch polish.</p></article>
+        <article class="principle"><strong>Prefer understandable boundaries.</strong><p>Keep contracts explicit and complexity close to the place that owns it.</p></article>
+        <article class="principle"><strong>Measure what matters.</strong><p>Use logs, metrics, and feedback loops to turn production behavior into better decisions.</p></article>
       </div>
     </div>
   </section>
@@ -656,7 +877,7 @@
       <h2 class="sec-title">Recognition & background.</h2>
       <div class="split-grid">
         <div class="split-panel">
-          <div class="stack-label" style="margin-bottom:18px;">ACHIEVEMENTS</div>
+          <div class="stack-label stack-label--spaced">ACHIEVEMENTS</div>
           <div class="ach-item">
             <div class="ach-mark">★</div>
             <div>
@@ -677,7 +898,7 @@
           </div>
         </div>
         <div class="split-panel">
-          <div class="stack-label" style="margin-bottom:18px;">EDUCATION</div>
+          <div class="stack-label stack-label--spaced">EDUCATION</div>
           <div class="edu-item">
             <div class="edu-degree">B.Tech, Information Technology</div>
             <div class="edu-school">ALIET, Vijayawada — affiliated with JNTUK<br>2008 – 2012 · 63.1%</div>
@@ -693,17 +914,17 @@
       <div class="contact-grid">
         <div>
           <div class="eyebrow">GET IN TOUCH</div>
-          <div class="contact-title">Let's build something<br><span>enterprise-grade.</span></div>
-          <p class="sec-sub" style="margin-bottom:0;">Open to Lead / Senior .NET Full Stack roles and consulting engagements across Azure cloud-native application development.</p>
+          <h2 class="contact-title">Let's build something<br><span>enterprise-grade.</span></h2>
+          <p class="sec-sub sec-sub--flush">Open to Lead / Senior .NET Full Stack roles and consulting engagements across Azure cloud-native application development.</p>
         </div>
         <div class="contact-links">
           <a href="mailto:viswateja2000@gmail.com"><span class="k">✉</span> viswateja2000@gmail.com</a>
           <a href="tel:+918712347046"><span class="k">☎</span> +91 87123 47046</a>
-          <a href="ViswaTejaS_Resume.pdf" download><span class="k">↓</span> Download full résumé (PDF)</a>
+          <a href="assets/ViswaTejaS_Resume.pdf" download><span class="k">↓</span> Download full résumé (PDF)</a>
         </div>
       </div>
       <div class="foot-bottom">
-        <div>© 2026 VISWA TEJA SUDEPALLI — HYDERABAD, INDIA</div>
+        <div>© 2026 VISWA TEJA S — HYDERABAD, INDIA</div>
         <div>BUILT WITH .NET-GRADE PRECISION</div>
       </div>
     </div>
